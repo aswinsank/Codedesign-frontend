@@ -9,15 +9,42 @@ document.addEventListener('DOMContentLoaded', function () {
     const downloadBtns = document.querySelectorAll('.download-btn');
     const loadingIndicator = document.getElementById('loadingIndicator');
     const checkboxes = document.querySelectorAll('.checkbox-input');
+    const tabsContainer = document.querySelector('.tabs');
+    
+    // Create the sliding indicator element
+    const tabsInnerBox = document.createElement('div');
+    tabsInnerBox.className = 'tabs-inner-box';
+    tabsContainer.insertBefore(tabsInnerBox, tabsContainer.firstChild);
 
     // State variables
     let isPopupOpen = false;
     let activeTab = 'html-css-tab';
     let downloadInProgress = false;
 
-    // Initialize popups
+    // Helper function to update the sliding indicator position
+    function updateTabsInnerBox() {
+        const activeButton = document.querySelector('.tab-btn.active');
+        if (activeButton && tabsContainer) {
+            requestAnimationFrame(() => {
+                const tabsRect = tabsContainer.getBoundingClientRect();
+                const buttonRect = activeButton.getBoundingClientRect();
+                
+                // Calculate position relative to the tabs container
+                const offsetLeft = buttonRect.left - tabsRect.left - 4; // -4 for container padding
+                
+                // Update the sliding indicator
+                tabsInnerBox.style.width = `${buttonRect.width}px`;
+                tabsInnerBox.style.transform = `translateX(${offsetLeft}px)`;
+                tabsInnerBox.style.display = 'block';
+            });
+        } else {
+            tabsInnerBox.style.display = 'none';
+        }
+    }
+
+    // Initialize popup functionality
     function initPopup() {
-        // Set ARIA attributes
+        // Set ARIA attributes for accessibility
         popupOverlay.setAttribute('aria-hidden', 'true');
         popupOverlay.setAttribute('aria-modal', 'true');
         popupOverlay.setAttribute('role', 'dialog');
@@ -33,9 +60,14 @@ document.addEventListener('DOMContentLoaded', function () {
             panel.setAttribute('role', 'tabpanel');
             panel.setAttribute('aria-hidden', panel.id !== activeTab);
         });
+
+        // Initialize the sliding indicator position
+        setTimeout(() => {
+            updateTabsInnerBox();
+        }, 100);
     }
 
-    // Open popup
+    // Open popup function
     function openPopup() {
         if (isPopupOpen || downloadInProgress) return;
 
@@ -43,10 +75,17 @@ document.addEventListener('DOMContentLoaded', function () {
         popupOverlay.classList.add('active');
         popupOverlay.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        
+        // Focus close button for accessibility
         closeBtn.focus();
+        
+        // Update sliding indicator position after popup opens
+        setTimeout(() => {
+            updateTabsInnerBox();
+        }, 150);
     }
 
-    // Close popup
+    // Close popup function
     function closePopup() {
         if (!isPopupOpen || downloadInProgress) return;
 
@@ -54,6 +93,8 @@ document.addEventListener('DOMContentLoaded', function () {
         popupOverlay.classList.remove('active');
         popupOverlay.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = 'auto';
+        
+        // Return focus to open button
         if (openPopupBtn) openPopupBtn.focus();
     }
 
@@ -62,27 +103,31 @@ document.addEventListener('DOMContentLoaded', function () {
         const button = e.currentTarget;
         const targetTab = button.dataset.tab;
 
+        // Prevent switching to same tab
         if (!targetTab || button.classList.contains('active')) return;
 
-        // Update active tab
+        // Update active tab state
         activeTab = targetTab;
 
-        // Update tab buttons
+        // Update tab button states
         tabButtons.forEach(btn => {
             const isActive = btn.dataset.tab === targetTab;
             btn.classList.toggle('active', isActive);
             btn.setAttribute('aria-selected', isActive);
         });
 
-        // Update tab panels
+        // Update tab panel states
         tabPanels.forEach(panel => {
             const isActive = panel.id === targetTab;
             panel.classList.toggle('active', isActive);
             panel.setAttribute('aria-hidden', !isActive);
         });
+        
+        // Update sliding indicator position
+        updateTabsInnerBox();
     }
 
-    // Handle download
+    // Handle download process
     function handleDownload(e) {
         if (downloadInProgress) return;
 
@@ -90,14 +135,14 @@ document.addEventListener('DOMContentLoaded', function () {
         loadingIndicator.style.display = 'block';
         e.currentTarget.disabled = true;
 
-        // Simulate download
+        // Simulate download process
         setTimeout(() => {
             downloadInProgress = false;
             loadingIndicator.style.display = 'none';
             e.currentTarget.disabled = false;
             closePopup();
 
-            // Log which options were selected
+            // Log selected options (for debugging)
             const options = {};
             if (activeTab === 'html-css-tab') {
                 options.includeScripts = document.getElementById('include-scripts').checked;
@@ -112,14 +157,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 2000);
     }
 
-    // Handle overlay click
+    // Handle overlay clicks (close popup when clicking outside)
     function handleOverlayClick(e) {
         if (e.target === popupOverlay) {
             closePopup();
         }
     }
 
-    // Handle checkbox changes
+    // Handle checkbox state changes
     function handleCheckboxChange(e) {
         const label = e.currentTarget.closest('label');
         if (label) {
@@ -134,35 +179,47 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Initialize event listeners
+    // Handle window resize (recalculate indicator position)
+    function handleResize() {
+        if (isPopupOpen) {
+            updateTabsInnerBox();
+        }
+    }
+
+    // Initialize all event listeners
     function initEventListeners() {
-        // Popup controls
-        if (openPopupBtn) openPopupBtn.addEventListener('click', openPopup);
-        if (closeBtn) closeBtn.addEventListener('click', closePopup);
+        // Popup control events
+        if (openPopupBtn) {
+            openPopupBtn.addEventListener('click', openPopup);
+        }
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closePopup);
+        }
         popupOverlay.addEventListener('click', handleOverlayClick);
 
-        // Prevent click propagation inside popup
+        // Prevent event bubbling inside popup container
         popupContainer.addEventListener('click', function (e) {
             e.stopPropagation();
         });
 
-        // Tabs
+        // Tab switching events
         tabButtons.forEach(button => {
             button.addEventListener('click', handleTabClick);
         });
 
-        // Downloads
+        // Download button events
         downloadBtns.forEach(button => {
             button.addEventListener('click', handleDownload);
         });
 
-        // Checkboxes
+        // Checkbox events
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('change', handleCheckboxChange);
         });
 
-        // Keyboard
+        // Global events
         document.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('resize', handleResize);
     }
 
     // Initialize everything

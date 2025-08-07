@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <button id="openPopupBtn">EXPORT CODE </button>
+    <button id="openPopupBtn">EXPORT CODE</button>
 
     <div id="popupOverlay" class="popup-overlay">
         <div id="popupContainer" class="popup-container">
@@ -26,63 +26,67 @@
                 </div>
                 
                 <div id="html-css-tab" class="tab-panel active">
-                    <div class="export-option-group">
-                        <div class="export-option-header">
-                            <span class="icon html"></span>
-                            <span class="export-title">Export as HTML & CSS</span>
-                            <span class="tag">Zipped</span>
+                    <div class="tab-content-container">
+                        <div class="export-option-group">
+                            <div class="export-option-header">
+                                <span class="icon html"></span>
+                                <span class="export-title">Export as HTML & CSS</span>
+                                <span class="tag">Zipped</span>
+                            </div>
+                            <ul class="options-list">
+                                <li>
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" class="checkbox-input" id="include-scripts" checked>
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-label">Include search/scripts styles (text, etc.)</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" class="checkbox-input" id="include-custom-html" checked>
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-label">Include custom code</span>
+                                    </label>
+                                </li>
+                            </ul>
                         </div>
-                        <ul class="options-list">
-                            <li>
-                                <label class="checkbox-container">
-                                    <input type="checkbox" class="checkbox-input" id="include-scripts" checked>
-                                    <span class="checkbox-custom"></span>
-                                    <span class="checkbox-label">Include search/scripts styles (text, etc.)</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="checkbox-container">
-                                    <input type="checkbox" class="checkbox-input" id="include-custom-html" checked>
-                                    <span class="checkbox-custom"></span>
-                                    <span class="checkbox-label">Include custom code</span>
-                                </label>
-                            </li>
-                        </ul>
                     </div>
                     
                     <button class="download-btn">Download HTML & CSS Project</button>
                 </div>
                 
                 <div id="nextjs-tab" class="tab-panel">
-                    <div class="export-option-group">
-                        <div class="export-option-header">
-                            <span class="icon react"></span>
-                            <span class="export-title">Export as Next JS Project</span>
-                            <span class="tag">Zipped</span>
+                    <div class="tab-content-container">
+                        <div class="export-option-group">
+                            <div class="export-option-header">
+                                <span class="icon react"></span>
+                                <span class="export-title">Export as Next JS Project</span>
+                                <span class="tag">Zipped</span>
+                            </div>
+                            <ul class="options-list">
+                                <li>
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" class="checkbox-input" id="use-app-dir" checked>
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-label">Use 'app' directory (Next.js v13+)</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" class="checkbox-input" id="include-magic-styles" checked>
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-label">Include assets locally (images, styles, fonts, etc.)</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" class="checkbox-input" id="include-custom-next" checked>
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-label">Include custom code</span>
+                                    </label>
+                                </li>
+                            </ul>
                         </div>
-                        <ul class="options-list">
-                            <li>
-                                <label class="checkbox-container">
-                                    <input type="checkbox" class="checkbox-input" id="use-app-dir" checked>
-                                    <span class="checkbox-custom"></span>
-                                    <span class="checkbox-label">Use 'app' directory (Next.js v13+)</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="checkbox-container">
-                                    <input type="checkbox" class="checkbox-input" id="include-magic-styles" checked>
-                                    <span class="checkbox-custom"></span>
-                                    <span class="checkbox-label">Include assets locally (images, styles, fonts, etc.)</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="checkbox-container">
-                                    <input type="checkbox" class="checkbox-input" id="include-custom-next" checked>
-                                    <span class="checkbox-custom"></span>
-                                    <span class="checkbox-label">Include custom code</span>
-                                </label>
-                            </li>
-                        </ul>
                     </div>
                     
                     <button class="download-btn">Download Next JS Project</button>

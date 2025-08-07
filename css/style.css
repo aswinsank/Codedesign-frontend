@@ -1,9 +1,9 @@
 :root {
-    --gray-bg: #f0f0f0; /* Lighter background for the tabs container */
-    --dark-bg: #ffffff; /* White background for the popup body */
+    --gray-bg: #f0f0f0;
+    --dark-bg: #ffffff;
     --popup-bg: #2d2d2d;
-    --border-color: #e0e0e0; /* Lighter border color for tabs and header */
-    --text-primary: #1e1e1e; /* Darker text for the white background */
+    --border-color: #e0e0e0;
+    --text-primary: #1e1e1e;
     --text-secondary: #555555;
     --button-bg: linear-gradient(180deg, #444 0%, #333 100%);
     --button-bg-hover: linear-gradient(180deg, #383838 0%, #282828 100%);
@@ -26,45 +26,28 @@ body {
     height: 100vh;
 }
 
-/* Updated #openPopupBtn styles based on strict new requirements */
+/* Open Popup Button */
 #openPopupBtn {
-    /* Dimensions */
     width: 130px;
     height: 32px;
     min-width: 130px;
-    
-    /* Positioning */
     position: absolute;
     top: 384px;
     left: 655px;
-    
-    /* Background */
     background: linear-gradient(180deg, #444444 0%, #333333 100%);
-    
-    /* Borders */
     border: none;
     border-top: 1px solid #FFFFFF1A;
     border-radius: 4px;
-    
-    /* Shadow */
     box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-    
-    /* Text */
     color: white;
     font-size: 14px;
     font-weight: 500;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
-    /* Spacing */
     padding: 8px 16px;
     gap: 10px;
-    
-    /* Layout */
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    /* Effects */
     opacity: 1;
     cursor: pointer;
     transition: background 0.2s ease;
@@ -74,7 +57,7 @@ body {
     background: linear-gradient(180deg, #383838 0%, #282828 100%);
 }
 
-/* Popup Styles (unaltered) */
+/* Popup Overlay */
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -93,6 +76,7 @@ body {
     display: flex;
 }
 
+/* Popup Container */
 .popup-container {
     width: 448px;
     height: auto;
@@ -103,6 +87,7 @@ body {
     box-sizing: border-box;
 }
 
+/* Popup Header */
 .popup-header {
     display: flex;
     justify-content: space-between;
@@ -131,6 +116,7 @@ body {
     margin: 0;
 }
 
+/* Close Button */
 .close-btn {
     width: 20px;
     height: 20px;
@@ -165,37 +151,72 @@ body {
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+/* Popup Body */
 .popup-body {
     padding: 16px 24px 24px 24px;
 }
 
+/* Tabs Container */
 .tabs {
     display: flex;
     background-color: #292929;
     border-radius: 6px;
     padding: 4px;
     margin-bottom: 24px;
+    position: relative;
 }
 
+/* Sliding Indicator for Active Tab */
+.tabs-inner-box {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    height: calc(100% - 8px);
+    background-color: #1e1e1e;
+    border-radius: 4px;
+    z-index: 0;
+    transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1), width 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
+    display: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Tab Buttons */
 .tab-btn {
     flex: 1;
     padding: 8px;
     background-color: transparent;
     border: none;
     border-radius: 4px;
-    color: #c2c2c2;
+    color: #888; /* Inactive tab color */
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease;
+    position: relative;
+    z-index: 2; /* Make sure tabs are above the sliding indicator */
+    text-align: center;
 }
 
-.tab-btn.active {
+/* Move the sliding indicator below the tab buttons */
+.tabs-inner-box {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    height: calc(100% - 8px);
     background-color: #1e1e1e;
-    color: #ffffff;
+    border-radius: 4px;
+    z-index: 1; /* Lower than .tab-btn */
+    transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1), width 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
+    display: block; /* Always show the indicator */
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
+/* Active tab style */
+.tab-btn.active {
+    color: #ffffff; /* Active tab color */
+}
+
+/* Tab Panels */
 .tab-panel {
     display: none;
 }
@@ -204,15 +225,26 @@ body {
     display: block;
 }
 
-.export-option-group {
+/* Tab Content Container - This matches the active tab color */
+.tab-content-container {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 24px;
     margin-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Export Option Group */
+.export-option-group {
+    margin-bottom: 0;
+}
+
+/* Export Option Header */
 .export-option-header {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .export-option-header .icon {
@@ -222,6 +254,7 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    opacity: 0.8;
 }
 
 .export-option-header .icon.react {
@@ -232,12 +265,14 @@ body {
     background-image: url('../assets/icons/icons8-html-5-50.png');
 }
 
+/* Export Title */
 .export-title {
     font-size: 14px;
     font-weight: 600;
     color: #f5f5f5;
 }
 
+/* Tag */
 .tag {
     background-color: #3e3e3e;
     color: #a0a0a0;
@@ -245,22 +280,26 @@ body {
     font-weight: 500;
     padding: 2px 6px;
     border-radius: 4px;
+    margin-left: auto;
 }
 
+/* Options List */
 .options-list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
+/* Checkbox Container */
 .checkbox-container {
     display: flex;
     align-items: center;
     cursor: pointer;
     user-select: none;
+    padding: 2px 0;
 }
 
 .checkbox-input {
@@ -268,29 +307,31 @@ body {
     opacity: 0;
 }
 
+/* Custom Checkbox */
 .checkbox-custom {
     width: 16px;
     height: 16px;
-    background-color: #444;
-    border: 1px solid #666;
-    border-radius: 4px;
+    background-color: #3a3a3a;
+    border: 1.5px solid #555;
+    border-radius: 3px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 12px;
     transition: all 0.2s ease;
+    flex-shrink: 0;
 }
 
 .checkbox-input:checked ~ .checkbox-custom {
-    background-color: #6a6aff;
-    border-color: #6a6aff;
+    background-color: #6366f1;
+    border-color: #6366f1;
 }
 
 .checkbox-custom::after {
     content: '';
     display: none;
-    width: 5px;
-    height: 10px;
+    width: 4px;
+    height: 8px;
     border: solid white;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
@@ -300,17 +341,14 @@ body {
     display: block;
 }
 
+/* Checkbox Label */
 .checkbox-label {
     font-size: 13px;
-    color: #c2c2c2;
+    color: #d1d5db;
+    line-height: 1.4;
 }
 
-.divider {
-    height: 1px;
-    background-color: #444;
-    margin: 24px 0;
-}
-
+/* Download Button */
 .download-btn {
     width: 100%;
     padding: 12px 16px;
@@ -319,7 +357,7 @@ body {
     font-size: 14px;
     font-weight: 500;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
     transition: all 0.2s ease-in-out;
@@ -334,69 +372,16 @@ body {
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
+.download-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Loading Indicator */
 .loading-indicator {
     display: none;
     text-align: center;
     color: #c2c2c2;
     font-size: 13px;
     margin-top: 16px;
-}
-
-/* Button Component Default State */
-.button-component {
-    /* Dimensions */
-    width: 71px;
-    height: 32px;
-
-    /* Positioning */
-    position: absolute;
-    /* top and left are for demonstration and may need to be adjusted */
-    top: 246px;
-    left: 261px;
-    
-    /* Background */
-    background: linear-gradient(180deg, #444444 0%, #333333 100%);
-    
-    /* Borders */
-    border: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    
-    /* Shadow */
-    box-shadow: none;
-
-    /* Text */
-    color: #F6F6F6; /* Based on the provided color for text */
-    font-family: 'Nunito Sans', sans-serif;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 100%;
-    letter-spacing: 0.03em;
-    
-    /* Spacing */
-    padding: 8px 16px;
-    gap: 10px;
-    
-    /* Layout */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* Effects */
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-/* Button Component Hover State */
-.button-component:hover {
-    background: #444444;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.3);
-}
-
-/* Button Component Pressed State */
-.button-component:active {
-    background: #444444;
-    border: 1px solid #1F1F1F;
-    box-shadow: none;
 }
