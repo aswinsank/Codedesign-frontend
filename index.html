@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Export</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <button id="openPopupBtn">EXPORT CODE </button>
+
+    <div id="popupOverlay" class="popup-overlay">
+        <div id="popupContainer" class="popup-container">
+            <div class="popup-header">
+                <div class="header-content">
+                    <h2 class="popup-title">CODE EXPORT</h2>
+                    <p class="popup-subtitle">Manage how you download your website's code.</p>
+                </div>
+                <button id="closeBtn" class="close-btn"></button>
+            </div>
+            
+            <div class="popup-body">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="html-css-tab">HTML & CSS</button>
+                    <button class="tab-btn" data-tab="nextjs-tab">Next JS</button>
+                </div>
+                
+                <div id="html-css-tab" class="tab-panel active">
+                    <div class="export-option-group">
+                        <div class="export-option-header">
+                            <span class="icon html"></span>
+                            <span class="export-title">Export as HTML & CSS</span>
+                            <span class="tag">Zipped</span>
+                        </div>
+                        <ul class="options-list">
+                            <li>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="checkbox-input" id="include-scripts" checked>
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-label">Include search/scripts styles (text, etc.)</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="checkbox-input" id="include-custom-html" checked>
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-label">Include custom code</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <button class="download-btn">Download HTML & CSS Project</button>
+                </div>
+                
+                <div id="nextjs-tab" class="tab-panel">
+                    <div class="export-option-group">
+                        <div class="export-option-header">
+                            <span class="icon react"></span>
+                            <span class="export-title">Export as Next JS Project</span>
+                            <span class="tag">Zipped</span>
+                        </div>
+                        <ul class="options-list">
+                            <li>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="checkbox-input" id="use-app-dir" checked>
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-label">Use 'app' directory (Next.js v13+)</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="checkbox-input" id="include-magic-styles" checked>
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-label">Include assets locally (images, styles, fonts, etc.)</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="checkbox-input" id="include-custom-next" checked>
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-label">Include custom code</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <button class="download-btn">Download Next JS Project</button>
+                </div>
+                
+                <div id="loadingIndicator" class="loading-indicator">Preparing download...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
