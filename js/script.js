@@ -42,6 +42,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Function to update download button text based on active tab
+    function updateDownloadButton() {
+        const downloadBtn = document.querySelector('.download-btn');
+        if (downloadBtn) {
+            if (activeTab === 'html-css-tab') {
+                downloadBtn.textContent = 'Download HTML & CSS Project';
+            } else if (activeTab === 'nextjs-tab') {
+                downloadBtn.textContent = 'Download Next JS Project';
+            }
+        }
+    }
+
     // Initialize popup functionality
     function initPopup() {
         // Set ARIA attributes for accessibility
@@ -61,9 +73,10 @@ document.addEventListener('DOMContentLoaded', function () {
             panel.setAttribute('aria-hidden', panel.id !== activeTab);
         });
 
-        // Initialize the sliding indicator position
+        // Initialize the sliding indicator position and download button text
         setTimeout(() => {
             updateTabsInnerBox();
+            updateDownloadButton();
         }, 100);
     }
 
@@ -123,8 +136,9 @@ document.addEventListener('DOMContentLoaded', function () {
             panel.setAttribute('aria-hidden', !isActive);
         });
         
-        // Update sliding indicator position
+        // Update sliding indicator position and download button text
         updateTabsInnerBox();
+        updateDownloadButton();
     }
 
     // Handle download process

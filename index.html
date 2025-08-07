@@ -13,20 +13,20 @@
         <div id="popupContainer" class="popup-container">
             <div class="popup-header">
                 <div class="header-content">
-                    <h2 class="popup-title">CODE EXPORT</h2>
+                    <h2 class="popup-title">Code Export</h2>
                     <p class="popup-subtitle">Manage how you download your website's code.</p>
                 </div>
                 <button id="closeBtn" class="close-btn"></button>
             </div>
             
             <div class="popup-body">
-                <div class="tabs">
-                    <button class="tab-btn active" data-tab="html-css-tab">HTML & CSS</button>
-                    <button class="tab-btn" data-tab="nextjs-tab">Next JS</button>
-                </div>
-                
-                <div id="html-css-tab" class="tab-panel active">
-                    <div class="tab-content-container">
+                <div class="tab-content-container">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="html-css-tab">HTML & CSS</button>
+                        <button class="tab-btn" data-tab="nextjs-tab">Next JS</button>
+                    </div>
+                    
+                    <div id="html-css-tab" class="tab-panel active">
                         <div class="export-option-group">
                             <div class="export-option-header">
                                 <span class="icon html"></span>
@@ -52,11 +52,7 @@
                         </div>
                     </div>
                     
-                    <button class="download-btn">Download HTML & CSS Project</button>
-                </div>
-                
-                <div id="nextjs-tab" class="tab-panel">
-                    <div class="tab-content-container">
+                    <div id="nextjs-tab" class="tab-panel">
                         <div class="export-option-group">
                             <div class="export-option-header">
                                 <span class="icon react"></span>
@@ -88,9 +84,9 @@
                             </ul>
                         </div>
                     </div>
-                    
-                    <button class="download-btn">Download Next JS Project</button>
                 </div>
+                
+                <button class="download-btn">Download HTML & CSS Project</button>
                 
                 <div id="loadingIndicator" class="loading-indicator">Preparing download...</div>
             </div>

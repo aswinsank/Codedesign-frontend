@@ -156,6 +156,15 @@ body {
     padding: 16px 24px 24px 24px;
 }
 
+/* Tab Content Container - This matches the active tab color */
+.tab-content-container {
+    background-color: #1e1e1e;
+    border-radius: 7px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 /* Tabs Container */
 .tabs {
     display: flex;
@@ -174,9 +183,9 @@ body {
     height: calc(100% - 8px);
     background-color: #1e1e1e;
     border-radius: 4px;
-    z-index: 0;
+    z-index: 1;
     transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1), width 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
-    display: none;
+    display: block;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -197,20 +206,6 @@ body {
     text-align: center;
 }
 
-/* Move the sliding indicator below the tab buttons */
-.tabs-inner-box {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    height: calc(100% - 8px);
-    background-color: #1e1e1e;
-    border-radius: 4px;
-    z-index: 1; /* Lower than .tab-btn */
-    transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1), width 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
-    display: block; /* Always show the indicator */
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
 /* Active tab style */
 .tab-btn.active {
     color: #ffffff; /* Active tab color */
@@ -223,15 +218,6 @@ body {
 
 .tab-panel.active {
     display: block;
-}
-
-/* Tab Content Container - This matches the active tab color */
-.tab-content-container {
-    background-color: #1e1e1e;
-    border-radius: 8px;
-    padding: 24px;
-    margin-bottom: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Export Option Group */
