@@ -70,15 +70,3 @@ To customize or extend the modal:
 1. **HTML Structure**: Modify `index.html` for layout changes
 2. **Styling**: Update `css/style.css` for visual modifications
 3. **Functionality**: Edit `js/script.js` for behavior changes
-
-### Key JavaScript Functions
-
-- `openPopup()`: Opens the modal
-- `closePopup()`: Closes the modal
-- `handleTabClick()`: Manages tab switching
-- `updateTabsInnerBox()`: Animates the tab indicator
-- `handleDownload()`: Simulates download process
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
