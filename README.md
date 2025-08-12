@@ -10,7 +10,7 @@
 git clone https://github.com/aswinsank/Codedesign-frontend.git
 
 # Navigate into the project folder
-cd PROJECT_FOLDER_NAME
+cd Codedesign-frontend
 
 # Install dependencies
 npm install
