@@ -7,7 +7,7 @@
 
 ```bash
 # Clone the repository
-git clone PLACEHOLDER_FOR_REPO_URL
+git clone https://github.com/aswinsank/Codedesign-frontend.git
 
 # Navigate into the project folder
 cd PROJECT_FOLDER_NAME
