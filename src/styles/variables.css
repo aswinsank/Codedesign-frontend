@@ -1,0 +1,17 @@
+:root {
+  --gray-bg: #f0f0f0;
+  --dark-bg: #ffffff;
+  --popup-bg: #2d2d2d;
+  --border-color: #e0e0e0;
+  --text-primary: #1e1e1e;
+  --text-secondary: #555555;
+  --button-bg: linear-gradient(180deg, #444 0%, #333 100%);
+  --button-bg-hover: linear-gradient(180deg, #383838 0%, #282828 100%);
+  --button-bg-pressed: linear-gradient(180deg, #333 0%, #444 100%);
+  --tab-inactive: #888;
+  --tab-active: #1e1e1e;
+  --checkbox-bg: #cccccc;
+  --checkbox-border: #999999;
+  --checkbox-checked-bg: #007bff;
+  --checkbox-checked-border: #007bff;
+}

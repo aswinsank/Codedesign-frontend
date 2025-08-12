@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Button } from './components/ui/Button/Button';
+import { ExportPopup } from './components/ExportPopup/ExportPopup';
+import { usePopup } from './hooks/usePopup';
+import './styles/globals.css';
 
-function App() {
+const App = () => {
+  const { 
+    isOpen, 
+    downloadInProgress, 
+    setDownloadInProgress, 
+    openPopup, 
+    closePopup 
+  } = usePopup();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div 
+      className="app"
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
+      }}
+    >
+      <Button
+        variant="trigger"
+        size="medium"
+        onClick={openPopup}
+        disabled={downloadInProgress}
+        style={{
+          width: '130px',
+          height: '32px',
+          minWidth: '130px'
+        }}
+      >
+        EXPORT CODE
+      </Button>
+
+      <ExportPopup
+        isOpen={isOpen}
+        onClose={closePopup}
+        downloadInProgress={downloadInProgress}
+        setDownloadInProgress={setDownloadInProgress}
+      />
     </div>
   );
-}
+};
 
 export default App;
